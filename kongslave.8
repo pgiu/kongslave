@@ -1,0 +1,94 @@
+.\" Manpage de kong.
+.\" Contactarse con pgiudice@autotrol.com.ar para consultas o errores 
+.TH man 8 "17 Dec 2014" "1.0" "kong man page"
+.SH NOMBRE
+kong \- Concentrador de datos de AUTOTROL
+.SH SINOPSIS
+kong configFileName.xml
+.SH DESCRIPCION
+kong es un concentrador de datos basado en opendnp3. Su función es recolectar 
+los datos provenientes de distintas remotas (RTUs) y presentarlas hacia el 
+maestro como una única remota. 
+
+.SH OPCIONES
+kong recibe como entrada un archivo de configuracion en formato xml. Este 
+archivo contiene la información de como conectar a cada RTU (direcion IP, 
+puerto, canal serie, etc) y de como mapear los puntos que recibe de cada 
+RTU a su memoria interna. 
+La función principal es el remapeo de puntos pero también permite enviar
+redireccionar comandos o enviar comandos desde la misma aplicación. 
+
+.SH COMANDOS
+Una vez que kong inicia, es posible ingresar una lista de comandos para 
+obtener valores de performance, conectividad, etc.
+Este es un resumen de aquellos commandos que pueden ingresarse: 
+
+.IP "h"
+Muestra la ayuda.
+.IP "o 101"
+Muestra informacion de la configuracion de la RTU con direccion DNP 101.
+.IP "w 101"
+Muestra informacion de la configuracion del canal que tiene a la RTU con direccion DNP 101.
+
+.PP
+.B "Información de los Canales"
+.IP "c 101"
+Muestra informacion del canal que contiene a la RTU con direccion DNP 101
+.IP "c slave"
+Muestra informacion sobre la comunicacion con el SCADA
+.IP "c all"
+Muestra el cuadro de conexiones.
+.IP "c eff"
+Muestra el cuadro de eficiencias.
+.IP "c list"
+Muestra el resultado como una lista.
+.IP "c rtu"
+Muestra la eficiencia de todas las remotas existentes.
+.IP "c sta"
+Muestra el estado (online/offline) para cada una de las remotas existentes.
+
+.PP
+.B "Envío de comandos y polls"
+.IP "b 101 1"
+Envia un mensaje de LATCH_ON a la RTU con direccion DNP 101.
+.IP "b 101 0"
+Envia un mensaje de LATCH_OFF a la RTU con direccion DNP 101.
+.IP "i 101"
+Pide iniciar un poll de integridad a la RTU con direccion DNP 101.
+.IP "e 101"
+Pide iniciar un poll de clase a la RTU con direccion DNP 101.
+
+
+.PP
+.B "Información de las RTUs"
+.IP "s 101"
+Muestra los puntos del esclavo que vienen de la RTU con direccion DNP 101.
+.IP "s all"
+Muestra toda la base de datos del esclavo.
+.IP "d 101"
+Muestra informacion de la RTU con direccion DNP 101.
+.IP "d all"
+Muestra informacion de todas las RTUs.
+.PI "r 101"
+Borra las estadisticas de la RTU con direccion DNP 101\nr all borra todas las estadisticas.
+
+.PP
+.B "Silenciar/Mostrar actividad de los canales"
+.IP "m 101"
+Silencia todo los canales.
+.IP "m unmute"
+Habilita todos los canales.
+.IP "m show"
+Muestra el estado actual.
+.IP "l 101"
+pone todo como offline
+.IP "q"
+Cierra el programa
+
+
+.SH VEA TAMBIEN
+gprsgway
+.SH BUGS
+No tiene bugs conocidos.
+.SH AUTOR
+Pablo Giudice (pgiudice@autotrol.com.ar)
