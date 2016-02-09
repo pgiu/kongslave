@@ -11,16 +11,37 @@ Originally built to test the opendnp3-based autotrol DNP3 data concentrator.
 
 ## Build 
 
-Tested with opendnp3 version 2.0.1 and Visual Studio 2013.
-No Linux version, but should be easy to write a Makefile. 
+Tested with current (feb 9 2016) opendnp3 version 2.0.x and Visual Studio 2013.
+It's assumed that opendnp3 and asio libraries are installed. 
+The executable will be created in the `Release` directory. 
+
+### Build on Windows
+
+Use the Visual Studio project
+
+### Build on Linux 
+
+Remember to set the variable `ASIO_HOME` before building. 
+
+To build the project:
+
+	make
+
+To install the binary in /usr/bin and install the man page, use:
+
+	sudo make install 
 
 ## Run
 
-Use the release version `release/`
-Call it without parameters to see the sintax or use the .bat files to learn how
+Call it without parameters to see the sintax or use the .bat (windows) or .sh (*nix) scripts on the `Scripts`directory to learn how
 to use it.
+On *nix systems, type
 
-# License 
+	man kongslave
+
+for help on the program.
+
+## License 
 
 opendnp3 is licensed under the terms of the terms of the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 
