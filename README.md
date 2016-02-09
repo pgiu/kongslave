@@ -7,7 +7,7 @@ pablogiudice@gmail.com
 DNP3 RTU simulator based on the opendnp3 library. 
 Generates N channels with M RTUs on each channel.
 Similar to the official demo but on stereoids.
-Originally built to test the opendnp3-based autotrol DNP3 data concentrator.
+Originally built to test the opendnp3-based Autotrol DNP3 data concentrator (www.autotrol.net).
 
 ## Build 
 
@@ -27,13 +27,13 @@ To build the project:
 
 	make
 
-To install the binary in /usr/bin and install the man page, use:
+To install the binary in `/usr/bin` and install the `man` page, use:
 
 	sudo make install 
 
 ## Run
 
-Call it without parameters to see the sintax or use the .bat (windows) or .sh (*nix) scripts on the `Scripts`directory to learn how
+Call it without parameters to see the sintax or use the `.bat` (windows) or `.sh` (*nix) scripts on the `Scripts`directory to learn how
 to use it.
 On *nix systems, type
 
