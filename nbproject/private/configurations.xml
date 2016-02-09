@@ -22,6 +22,8 @@
           </df>
         </df>
         <in>DemoMain.cpp</in>
+        <in>messages_EN.h</in>
+        <in>messages_ES.h</in>
       </df>
       <df name="Release">
       </df>

@@ -17,6 +17,18 @@
 #include <string.h>
 #include <stdio.h>
 
+// Available languages
+#define ENGLISH 1
+#define SPANISH 2
+// Define LANGUAGE to ENGLISH to have the application translated to english.
+#define LANGUAGE SPANISH
+
+#if (LANGUAGE == SPANISH)
+#include <messages_EN.h>
+#else
+#include <messages_ES.h>
+#endif
+
 using namespace opendnp3;
 using namespace openpal;
 using namespace asiopal;
@@ -56,6 +68,7 @@ public:
         this->port = port;
     }
 };
+
 std::vector<conn> connectionsVector;
 
 // Tipos de datos
@@ -93,21 +106,20 @@ void ConfigureDatabase(DatabaseConfigView view) {
 }
 
 void printHelp() {
-    std::cout << "Escriba <comando> <parametros> <enter>" << std::endl;
-    std::cout << "Donde comando es uno de la siguiente lista:" << endl;
+    std::cout << HELP_LINE_1 << std::endl;
+    std::cout << HELP_LINE_2 << endl;
     std::cout << \
-		"c = Muestra el estado de conexion de los canales" << endl <<
-            "b = modifica un punto digital" << endl <<
-            "d = modifica un punto doublebit" << endl <<
-            "o = modifica un contador" << endl <<
-            "a = modifica un valor analogico" << endl <<
-            "m = habilitar/deshabilitar log" << endl <<
-            "s = muestra estadistica de los canales" << endl <<
-            "c = muestra el cuadro de conexion" << endl <<
-            "r = muestra estdisticas de las RTUs " << endl <<
-            "p = inicia/detiene el modo fiesta - todos los puntos de la RTU cambian una vez por segundo" << endl <<
-            "y = inicia/detiene el modo bipolar - todas las RTUs se habilitan/deshabilitan una vez cada 5 segundos" << endl <<
-            "x/q = para salir" << endl <<
+            HELP_LINE_C << endl <<
+            HELP_LINE_B << endl <<
+            HELP_LINE_D << endl <<
+            HELP_LINE_O << endl <<
+            HELP_LINE_A << endl <<
+            HELP_LINE_M << endl <<
+            HELP_LINE_S << endl <<
+            HELP_LINE_R << endl <<
+            HELP_LINE_P << endl <<
+            HELP_LINE_Y << endl <<
+            HELP_LINE_X  << endl <<
             std::endl;
 }
 
