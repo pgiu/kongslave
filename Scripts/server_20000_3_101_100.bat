@@ -1,1 +1,0 @@
-KongSlaveTest.exe tcpserver 0.0.0.0 20000 3 101 100

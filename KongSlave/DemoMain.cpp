@@ -3,9 +3,7 @@
 #include <asiodnp3/ConsoleLogger.h>
 #include <asiopal/UTCTimeSource.h>
 #include <asiodnp3/MeasUpdate.h>
-#include "ConcentratorCommandHandler.h"
 #include <opendnp3/outstation/SimpleCommandHandler.h>
-#include <opendnp3/outstation/Database.h>
 #include <opendnp3/LogLevels.h>
 #include <string>
 #include <thread>
@@ -14,6 +12,10 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>
 #include <condition_variable>
+#include <iterator>
+#include <math.h>
+#include <string.h>
+#include <stdio.h>
 
 using namespace opendnp3;
 using namespace openpal;
@@ -591,7 +593,7 @@ int opendnp3_slave(int connectionType, char* tcpAddress, int tcpPort, int maxCha
 	DNP3Manager manager(std::thread::hardware_concurrency());
 
 	// send log messages to the console
-	manager.AddLogSubscriber(&ConsoleLogger::Instance());
+	manager.AddLogSubscriber(ConsoleLogger::Instance());
 
 	pChannel = new IChannel*[numeroDeCanales];
 	currentState = new ChannelState[numeroDeCanales];
@@ -624,12 +626,12 @@ int opendnp3_slave(int connectionType, char* tcpAddress, int tcpPort, int maxCha
 		if (connectionType == TCP_SERVER){
 
 			// Create a TCP server (listener)	
-			pChannel[cc] = manager.AddTCPServer("server", FILTERS, TimeDuration::Seconds(5), TimeDuration::Seconds(5), "0.0.0.0", tcpPort);
+			pChannel[cc] = manager.AddTCPServer("server", FILTERS,  ChannelRetry::Default(), "0.0.0.0", tcpPort);
 		}
 		else if (connectionType == TCP_CLIENT){
 
 			// Create a TCP server (listener)	
-			pChannel[cc] = manager.AddTCPClient("client", FILTERS, TimeDuration::Seconds(5), TimeDuration::Seconds(5), tcpAddress, "0.0.0.0", tcpPort);
+			pChannel[cc] = manager.AddTCPClient("client", FILTERS, ChannelRetry::Default(), tcpAddress, "0.0.0.0", tcpPort);
 		}
 
 		connectionsVector.push_back(conn(tcpAddress, tcpPort));
@@ -676,7 +678,7 @@ int opendnp3_slave(int connectionType, char* tcpAddress, int tcpPort, int maxCha
 			// updating the outstation's database.
 			pOutstation[k] = pChannel[cc]->AddOutstation(
 				name.c_str(),
-				kongcentrator::SuccessCommandHandler::Instance(),
+				SuccessCommandHandler::Instance(),
 				DefaultOutstationApplication::Instance(),
 				stackConfigs[k]);
 
@@ -790,7 +792,7 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 
 	//
-	cout << "Autotrol " << year << endl;
+	cout << "Pablo Giudice " << year << endl;
 	cout << "KongSlaveTest v" << versionNumber << "." << versionRevision << endl;
 	cout << "Slave Test" << endl;
 	cout << "----------------------------------------------------" << endl;
