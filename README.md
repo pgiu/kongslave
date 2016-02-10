@@ -2,8 +2,6 @@
 
 Pablo Giudice 2016
 
-pablogiudice@gmail.com
-
 DNP3 RTU simulator based on the opendnp3 library. 
 Generates N channels with M RTUs on each channel.
 Similar to the official demo but on stereoids.
